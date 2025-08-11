@@ -1,0 +1,144 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Varela+Round&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: antiquewhite;
+}
+
+
+nav{
+    font-family: 'Ubuntu', sans-serif;
+}
+
+nav ul{
+    display: flex;
+    align-items: center;
+    list-style-type: none;
+    height: 65px;
+    background-color: black;
+    color: white;
+}
+
+nav ul li{
+    padding: 0 12px;
+}
+
+.brand img{
+    width: 44px;
+    padding: 0 8px;
+}
+
+.brand{
+    display: flex;
+    align-items: center;
+    font-weight: bolder;
+    font-size: 1.3rem;
+}
+
+.container{
+    min-height: 72vh;
+    background-color: black;
+    color: white;
+    font-family: 'varela round', sans-serif;
+    display: flex;
+    margin: 23px auto;
+    width: 70%;
+    border-radius: 12px;
+    padding: 34px;
+    background-image: url('./images/bg.jpg');
+    background-size: cover; 
+    background-position: center;
+}
+
+.bottom{
+    position: sticky;
+    height: 130px;
+    background-color: black;
+    color: white;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    
+}
+
+.icons{
+    margin-top: 10px;
+    
+
+}
+
+.icons i{
+    cursor: pointer;
+    font-size: 25px;
+}
+
+#myProgressBar{
+    width: 80vw;
+    text-align: center;
+    cursor: pointer;
+}
+
+.songItemContainer{
+    margin: 74px;
+}
+
+.songItem{
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    
+    background-color: white;
+    color: black;
+    margin: 12px 0;
+    align-items: center;
+    border-radius: 34px;
+    width: 120%;
+}
+
+.songItem img{
+    width: 44px;
+    margin:  0px 23px;
+    border-radius: 34px;
+}
+
+.songListplay{
+    font-size: 2px;
+}
+
+.timestamp{
+    margin: 0 23px;
+    font-size: large;
+}
+
+.songName{
+    font-size: 15px;
+}
+
+.songItem i{
+    font-size: 20px;
+    cursor: pointer;
+    
+    
+}
+
+.songInfo{
+    position: absolute;
+    left: 10vw;
+     font-family: 'varela round', sans-serif;
+}
+
+.songInfo img{
+    opacity: 0;
+    transition: opacity 0.8s ease-in;
+}
+
+
+
