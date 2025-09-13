@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router'
 
+
 const UserLogin = () => {
 
     const [email, setEmail] = useState('');
@@ -31,7 +32,7 @@ const UserLogin = () => {
          } }/>
          <button className='bg-[#111] mb-3  font-semibold rounded px-4 py-2 w-full text-lg text-white placeholder:text-base' type='submit'>Login</button>
          
-         <p className='text-center'>New Here<Link to='' className='text-blue-600'>Create New Account</Link></p>
+         <p className='text-center'>New Here ?<Link to="/signup" className='text-blue-600'>{" "}Create New Account</Link></p>
 
 
      </form>
