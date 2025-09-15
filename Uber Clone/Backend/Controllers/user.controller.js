@@ -18,6 +18,12 @@ module.exports.registerUser = async (req, res, next) => {
 
 
     const{fullname, email, password} = req.body
+
+    const isUserAlreadyExist = await userModel.findOne({email})
+
+    if (isUserAlreadyExist) {
+        return res.status(409).json({message: "User with this email already exists"})
+    }
     const hashedPassword = await userModel.hashPassword(req.body.password)
 
     const user = await userService.createUser({
@@ -67,3 +73,4 @@ module.exports.logoutUser = async (req, res, next) => {
     await BlacklistTokenModel.create({token})
     res.status(200).json({message: "Logged out successfully"})
 }
+
