@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react'
-import { Link } from 'react-router'
+import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import { UserDataContext } from '../Context/UserContext'
 import axios from 'axios'
@@ -10,6 +10,7 @@ const UserLogin = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const[userData, setUserData] = useState({})
+    const [error, setError] = useState('')
 
     const {user,setUser} = useContext(UserDataContext)
 
@@ -19,21 +20,31 @@ const UserLogin = () => {
 
     const submitHandler =async (e) => {
         e.preventDefault();
-         const userData = {
-         email,  
-         password
-         }
-         const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/users/login`, userData)
-
-         if(response.status === 200){
+        setError('')
+        const userData = {
+          email,  
+          password
+        }
+        try {
+          const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/users/login`, userData)
+          if(response.status === 200){
             const data = response.data
             localStorage.setItem('token', data.token);
             navigate('/home')
-         }
-         setEmail('');
-        setPassword('');
-        
-        
+          }
+          setEmail('');
+          setPassword('');
+        } catch (err) {
+          const apiMessage = err?.response?.data?.message
+          const validationErrors = err?.response?.data?.errors
+          if (validationErrors && Array.isArray(validationErrors) && validationErrors.length > 0) {
+            setError(validationErrors[0]?.msg || 'Validation failed')
+          } else if (apiMessage) {
+            setError(apiMessage)
+          } else {
+            setError('Login failed. Please try again.')
+          }
+        }
     }
   return (
    <div>
@@ -50,6 +61,9 @@ const UserLogin = () => {
          <input className='bg-[#eeeeee] mb-7  rounded px-4 py-2  w-full text-lg placeholder:text-base' required type="password" placeholder='Your password' value={password} onChange={(e)=>{
             setPassword(e.target.value)
          } }/>
+         {error && (
+           <p className='text-red-600 text-sm mb-3'>{error}</p>
+         )}
          <button className='bg-[#111] mb-3  font-semibold rounded px-4 py-2 w-full text-lg text-white placeholder:text-base' type='submit'>Login</button>
          
          <p className='text-center'>New Here ?<Link to="/signup" className='text-blue-600'>{" "}Create New Account</Link></p>

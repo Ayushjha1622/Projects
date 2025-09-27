@@ -14,6 +14,7 @@ import { UserDataContext } from './Context/UserContext'
 import { useContext } from 'react'
 import UserProtectedWrapper from './Pages/UserProtectedWrapper'
 import CaptainProtectWrapper from './Pages/CaptainProtectedWrapper'
+import Riding from './Pages/Riding'
 
 const App = () => {
   const ans = useContext(UserDataContext)
@@ -37,6 +38,7 @@ const App = () => {
           <Route path="/captain-home" element={<CaptainProtectWrapper>
             <CaptainHome/>
           </CaptainProtectWrapper>} />
+          <Route path='/riding' element={<Riding/>}/>
 
       </Routes>
     </div>
