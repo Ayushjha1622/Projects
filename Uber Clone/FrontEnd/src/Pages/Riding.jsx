@@ -1,10 +1,14 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Riding = () => {
   return (
-    <div className='h-screen'>
+     <div className='h-screen'>
+      < Link to='/home' className='fixed  right-2 top-2 h-10 w-10 bg-white flex items-center justify-center rounded-full'>
+        <i class=" text-lg  font-medium ri-home-2-fill"></i>
+      </Link>
       <div className='h-1/2'>
-        
+        <img src="https://imgs.search.brave.com/ifLqHkbyqYKdQFVgzrfVEScphGnRTKa16u47GFJL0wY/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9jZG4u/ZHJpYmJibGUuY29t/L3VzZXJ1cGxvYWQv/MjUwMTQzMTkvZmls/ZS9vcmlnaW5hbC05/NGI3ZWIxMzJkZWM4/NTcyNzQ0NzRiYTBh/OWY1YzExNy5wbmc_/Zm9ybWF0PXdlYnAm/cmVzaXplPTQwMHgz/MDAmdmVydGljYWw9/Y2VudGVy" alt="" />
       </div>
 
       <div className='h-1/2 p-4 '>

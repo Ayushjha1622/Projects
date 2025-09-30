@@ -105,7 +105,7 @@ const Home = () => {
 
   useGSAP(
     function () {
-      if (waitingForDriver) {
+      if (WaitingForDriver) {
         gsap.to(waitingForDriverRef.current, {
           transform: "translateY(0%)",
         });
@@ -128,8 +128,9 @@ const Home = () => {
 
       <div className="h-screen w-screen">
         <img
-          className="h-full w-full object-cover "
-          src="https://www.google.com/imgres?q=uber%20map%20image&imgurl=https%3A%2F%2Fwww.medianama.com%2Fwp-content%2Fuploads%2F2018%2F06%2FScreenshot_20180619-112715.png.png&imgrefurl=https%3A%2F%2Fwww.medianama.com%2F2018%2F06%2F223-google-maps-removes-in-app-booking-of-ubers%2F&docid=15MrstCh21T21M&tbnid=Wtk_N8BNWf79XM&vet=12ahUKEwjMtonKvvmPAxUT3jgGHYH8LukQM3oECCAQAA..i&w=493&h=383&hcb=2&ved=2ahUKEwjMtonKvvmPAxUT3jgGHYH8LukQM3oECCAQAA"
+          className="h-full w-full object-cover"
+          src="https://images.unsplash.com/photo-1569336415962-a4bd9f69cd83?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1931&q=80"
+          alt="Map background"
         />
       </div>
       <div className="bg-white flex flex-col justify-end top-0  h-screen absolute  w-full">
@@ -141,7 +142,7 @@ const Home = () => {
             }}
             className=" opacity-0 absolute right-6 top-6 text-2xl"
           >
-            <i class="ri-arrow-down-wide-line"></i>
+            <i className="ri-arrow-down-wide-line"></i>
           </h5>
           <h4 className="text-lg font-semibold">Find a Trip </h4>
           <form
@@ -211,10 +212,14 @@ const Home = () => {
         <LookingForDriver
           setVehiclePanel={setVehiclePanel}
           setVehicleFound={setVehicleFound}
+          setWaitingForDriver={setwaitindDriver}
         />
       </div>
-      <div ref={waitingForDriverRef} className="fixed w-full z-30 bottom-0 bg-white px-3 py-10 pt-14 ">
-        <WaitingForDriver waitingForDriver={waitingForDriverRef} />
+      <div ref={waitingForDriverRef} className="fixed w-full z-30 bottom-0 bg-white px-3 py-10 pt-14 translate-y-full">
+        <WaitingForDriver 
+          setWaitingForDriver={setwaitindDriver}
+          setVehicleFound={setVehicleFound}
+        />
       </div>
     </div>
   );

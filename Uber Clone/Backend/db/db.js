@@ -1,16 +1,22 @@
 const mongoose = require('mongoose');
 
-const connectToDB = async () => {
-  try {
-    const conn = await mongoose.connect(process.env.DB_CONNECT, {
-      useNewUrlParser: true,
-      
-    });
-    console.log(`MongoDB Connected: ${conn.connection.host}`);
-  } catch (error) {
-    console.error(`Error: ${error.message}`);
-    process.exit(1);
-  }
-};
+// Initialize global flag for mock data
+global.isUsingMockData = false;
 
-module.exports = connectToDB;
+function connectToDb() {
+    const mongoUri = process.env.DB_CONNECT || 'mongodb://127.0.0.1:27017/uberclone';
+    console.log('[DB] ENV DB_CONNECT not set. Falling back to default:', mongoUri);
+
+    mongoose.connect(mongoUri)
+        .then(() => {
+            console.log('Connected to MongoDB');
+            global.isUsingMockData = false;
+        })
+        .catch((err) => {
+            console.error('Error connecting to MongoDB', err);
+            console.log('Continuing with mock data for development');
+            global.isUsingMockData = true;
+        });
+}
+
+module.exports = connectToDb;

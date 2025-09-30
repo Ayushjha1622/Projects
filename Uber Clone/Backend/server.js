@@ -1,13 +1,10 @@
-
-const http = require('http')
-const app = require("./app")
-const port = process.env.PORT || 3000
-
+// const dotenv = require('dotenv');
+// dotenv.config();
+const app = require('./app');
 
 
-const server = http.createServer(app)
+const PORT = process.env.PORT || 4000;  // fallback to 2000 only if env not set
 
-server.listen(port, ()=>{
-    console.log(`server is running on port ${port}`);
-    
-}) 
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});

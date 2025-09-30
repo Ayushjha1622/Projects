@@ -1,23 +1,26 @@
-import React from 'react'
-import { useState, useContext } from 'react'
-import { Link} from 'react-router-dom'
+import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { CaptainDataContext } from '../Context/CaptainContext'
-import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
 const CaptainSignup = () => {
+
+  const navigate = useNavigate()
+
   const [ email, setEmail ] = useState('')
   const [ password, setPassword ] = useState('')
   const [ firstName, setFirstName ] = useState('')
   const [ lastName, setLastName ] = useState('')
-  const [ userData, setUserData ] = useState({})
+
   const [ vehicleColor, setVehicleColor ] = useState('')
   const [ vehiclePlate, setVehiclePlate ] = useState('')
   const [ vehicleCapacity, setVehicleCapacity ] = useState('')
   const [ vehicleType, setVehicleType ] = useState('')
 
-  const navigate = useNavigate()
+
   const { captain, setCaptain } = React.useContext(CaptainDataContext)
+
 
   const submitHandler = async (e) => {
     e.preventDefault()
@@ -28,23 +31,29 @@ const CaptainSignup = () => {
       },
       email: email,
       password: password,
-        vehicle: {
+      vehicle: {
         color: vehicleColor,
         plate: vehiclePlate,
-        capacity: vehicleCapacity,
+        capacity: parseInt(vehicleCapacity, 10),
         vehicleType: vehicleType
       }
     }
 
-    const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/captains/register`, captainData)
+    try {
+      const baseURL = import.meta.env.VITE_BASE_URL || 'http://localhost:4000'
+      const response = await axios.post(`${baseURL}/captains/register`, captainData)
 
-    if (response.status === 201) {
-      const data = response.data
-      setCaptain(data.captain)
-      localStorage.setItem('token', data.token)
-      navigate('/captain-home')
+      if (response.status === 201) {
+        const data = response.data
+        setCaptain(data.captain)
+        localStorage.setItem('token', data.token)
+        navigate('/captain-home')
+      }
+    } catch (err) {
+      console.error('Captain signup failed:', err?.response?.data || err.message)
+      alert(err?.response?.data?.message || err?.response?.data?.errors?.[0]?.msg || 'Signup failed. Please check your inputs.')
+      return
     }
-
 
     setEmail('')
     setFirstName('')
@@ -57,7 +66,7 @@ const CaptainSignup = () => {
 
   }
   return (
-  <div className='py-5 px-5 h-screen flex flex-col justify-between'>
+    <div className='py-5 px-5 h-screen flex flex-col justify-between'>
       <div>
         <img className='w-20 mb-3' src="https://www.svgrepo.com/show/505031/uber-driver.svg" alt="" />
 
@@ -155,10 +164,10 @@ const CaptainSignup = () => {
                 setVehicleType(e.target.value)
               }}
             >
-              <option className='placeholder:text-base' value="" disabled>Select Vehicle Type</option>
+              <option value="" disabled>Select Vehicle Type</option>
               <option value="car">Car</option>
-              <option value="bike">Bike</option>
               <option value="auto">Auto</option>
+              <option value="motorcycle">Motorcycle</option>
             </select>
           </div>
 
@@ -170,7 +179,7 @@ const CaptainSignup = () => {
         <p className='text-center'>Already have a account? <Link to='/captain-login' className='text-blue-600'>Login here</Link></p>
       </div>
       <div>
-        <p className='text-[10px] mt-6 leading-tight'>This site is protected by reCAPTCHA and the <span className='underline'>Google Privacy
+        <p className='text-[10px] leading-tight'>This site is protected by reCAPTCHA and the <span className='underline'>Google Privacy
           Policy</span> and <span className='underline'>Terms of Service apply</span>.</p>
       </div>
     </div>
