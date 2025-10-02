@@ -18,26 +18,27 @@ const CaptainProtectWrapper = ({
     useEffect(() => {
         if (!token) {
             navigate('/captain-login')
-            return
         }
 
         const baseURL = import.meta.env.VITE_BASE_URL || 'http://localhost:4000'
         axios.get(`${baseURL}/captains/profile`, {
-        headers: {
-            Authorization: `Bearer ${token}`
-        }
-    }).then(response => {
-        if (response.status === 200) {
-            setCaptain(response.data.captain)
-            setIsLoading(false)
-        }
-    })
-        .catch(err => {
-            console.log(err)
-            localStorage.removeItem('token')
-            navigate('/captain-login')
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then(response => {
+            if (response.status === 200) {
+                setCaptain(response.data.captain)
+                setIsLoading(false)
+            }
         })
+            .catch(err => {
+                console.error('Captain profile fetch failed:', err?.response?.data || err.message)
+                localStorage.removeItem('token')
+                navigate('/captain-login')
+            })
     }, [ token ])
+
+    
 
     if (isLoading) {
         return (
