@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { CaptainDataContext } from '../Context/CaptainContext'
+import { CaptainDataContext } from '../Context/CaptainContext.jsx'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
@@ -20,8 +20,7 @@ const CaptainProtectWrapper = ({
             navigate('/captain-login')
         }
 
-        const baseURL = import.meta.env.VITE_BASE_URL || 'http://localhost:4000'
-        axios.get(`${baseURL}/captains/profile`, {
+        axios.get(`${import.meta.env.VITE_BASE_URL}/captains/profile`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -32,7 +31,7 @@ const CaptainProtectWrapper = ({
             }
         })
             .catch(err => {
-                console.error('Captain profile fetch failed:', err?.response?.data || err.message)
+                console.log(children)
                 localStorage.removeItem('token')
                 navigate('/captain-login')
             })

@@ -1,13 +1,14 @@
-const dotenv = require("dotenv");
-dotenv.config();   // load .env first
+const dotenv = require('dotenv');
+dotenv.config();
 const express = require('express');
 const cors = require('cors');
 const app = express();
 const cookieParser = require('cookie-parser');
 const connectToDb = require('./db/db');
-const userRoutes = require('./routes/user.routes');
-const captainRoutes = require('./routes/captain.routes');
-
+const userRoutes = require('./Routes/user.routes');
+const captainRoutes = require('./Routes/captain.routes');
+const mapsRoutes = require('./Routes/maps.routes');
+const rideRoutes = require('./Routes/ride.routes')
 
 connectToDb();
 
@@ -24,7 +25,8 @@ app.get('/', (req, res) => {
 
 app.use('/users', userRoutes);
 app.use('/captains', captainRoutes);
-
+app.use('/maps', mapsRoutes);
+app.use('/rides',rideRoutes)
 
 
 
