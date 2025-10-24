@@ -40,8 +40,6 @@ const Stairs = (props) => {
             scale:1.2
         })
     }, [currentPath])
-
- 
     
 
     return (
@@ -55,10 +53,9 @@ const Stairs = (props) => {
                     <div className='stair h-full w-1/5 bg-black'></div>
                 </div>
             </div>
-            
-             <div ref={pageRef}> 
+            <div ref={pageRef}>
                 {props.children}
-             </div> 
+            </div>
         </div>
     )
 }

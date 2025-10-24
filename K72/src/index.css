@@ -2,18 +2,13 @@
 
 @font-face {
     font-family: font1;
-    src: url(/fonts/Lausanne-300.woff2);
+    src: url(../public/fonts/Lausanne-300.woff2);
 }
 @font-face {
     font-family: font2;
-    src: url(/fonts/Lausanne-500.woff2);
+    src: url(../public/fonts/Lausanne-500.woff2);
 }
 
-
-body{
-    
-    background-color: #111;
-}
 
 .moveX{
     animation-name: moveAnimation;
@@ -24,11 +19,10 @@ body{
 
 .moveLink{
     opacity: 0;
-    transition: all ease 0.3s
+    transition: all ease 0.3s;
 }
 
-.link:hover .moveLink
-{
+.link:hover .moveLink{
     opacity: 1;
 }
 
