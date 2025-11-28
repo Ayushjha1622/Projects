@@ -797,8 +797,8 @@ article:hover p {
 /* FOOTER SECTION */
 
 footer {
-  height: 10vh;
-  margin: 0 1rem;
+  margin: 0 1rem 1.5rem;
+  padding: 1rem 0;
   background: rgba(0, 0, 0, 0.9);
   backdrop-filter: blur(10px);
   border-top: 2px solid rgba(0, 212, 255, 0.3);
@@ -814,7 +814,8 @@ footer p {
   text-align: center;
   color: #b8b8b8;
   transition: all 0.3s ease;
-  padding: 1.5rem;
+  padding: 0.5rem 1rem;
+  line-height: 1.4;
 }
 
 footer:hover p {

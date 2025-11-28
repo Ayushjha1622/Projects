@@ -18,6 +18,17 @@
   }
   #hamburger-nav {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 1rem;
+    border-bottom: none;
+    background: rgba(0, 0, 0, 0.9);
+    box-shadow: none;
+    box-sizing: border-box;
+  }
+  #hamburger-nav .hamburger-menu {
+    margin-left: auto;
   }
   #experience,
   .experience-details-container {
@@ -51,8 +62,7 @@
 }
 
 @media screen and (max-width: 600px) {
-  #contact,
-  footer {
+  #contact {
     height: 40vh;
   }
   #profile {
@@ -90,9 +100,14 @@
     text-align: center;
   }
   .section__pic-container {
-    width: auto;
-    height: 46vw;
+    width: clamp(200px, 70vw, 280px);
+    height: clamp(200px, 70vw, 280px);
     justify-content: center;
+  }
+  #about .section__pic-container {
+    width: clamp(220px, 75vw, 300px);
+    height: clamp(220px, 75vw, 300px);
+    padding: 6px;
   }
   .section__text__p2 {
     font-size: 1.25rem;
@@ -102,5 +117,14 @@
   }
   .text-container {
     text-align: justify;
+  }
+  footer {
+    height: auto;
+    margin: 0 0.75rem 1rem;
+    padding: 0.5rem 0.5rem;
+  }
+  footer p {
+    padding: 0;
+    font-size: 0.85rem;
   }
 }
