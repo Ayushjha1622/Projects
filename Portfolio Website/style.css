@@ -40,7 +40,7 @@ nav,
 nav {
   justify-content: space-around;
   align-items: center;
-  height: 17vh;
+  height: 10vh;
   background: rgba(0, 0, 0, 0.9);
   backdrop-filter: blur(10px);
   border-bottom: 2px solid #00d4ff;
@@ -51,7 +51,7 @@ nav {
 .nav-links {
   gap: 2rem;
   list-style: none;
-  font-size: 1.5rem;
+  font-size: 1rem;
 }
 
 a {
@@ -419,7 +419,7 @@ section {
   animation: fadeInUp 1s ease-out 0.3s both;
 }
 
-.about-containers {
+#about .about-containers {
   gap: 2rem;
   margin-bottom: 2rem;
   margin-top: 2rem;
@@ -436,18 +436,49 @@ section {
 }
 
 .about-pic {
-  border-radius: 2rem;
+  border-radius: 50%;
   transition: all 0.3s ease;
-  border: 3px solid #00d4ff;
-  box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+  border: 4px solid #00d4ff;
+  box-shadow: 0 0 25px rgba(0, 212, 255, 0.35);
   width: 100%;
   height: 100%;
   object-fit: cover;
+  aspect-ratio: 1 / 1;
 }
 
 .about-pic:hover {
   transform: scale(1.05);
   filter: drop-shadow(0 0 20px rgba(0, 212, 255, 0.6));
+}
+
+#about .section-container {
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 2.5rem;
+  height: auto;
+}
+
+#about .about-details-container {
+  align-items: center;
+}
+
+#about .section__pic-container {
+  flex: 0 0 auto;
+  width: clamp(220px, 30vw, 320px);
+  height: clamp(220px, 30vw, 320px);
+  padding: 8px;
+  border-radius: 50%;
+  margin: 2rem auto 0;
+  background: radial-gradient(circle at top, rgba(0, 212, 255, 0.4), rgba(0, 0, 0, 0.2));
+  box-shadow: 0 15px 45px rgba(0, 212, 255, 0.2);
+  justify-content: center;
+  align-items: center;
+}
+
+#about .section__pic-container img {
+  border-radius: 50%;
+  border: 4px solid #00d4ff;
 }
 
 .arrow {
@@ -511,6 +542,18 @@ section {
   animation: fadeInUp 1s ease-out 0.6s both;
 }
 
+#experience .about-containers {
+  gap: 3rem;
+  align-items: stretch;
+}
+
+.experience-details-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
 .experience-sub-title {
   color: #00d4ff;
   font-weight: 600;
@@ -522,12 +565,6 @@ section {
 .experience-sub-title:hover {
   color: #ff0080;
   text-shadow: 0 0 15px rgba(255, 0, 128, 0.5);
-}
-
-.experience-details-container {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
 }
 
 .article-container {
@@ -592,12 +629,38 @@ article:hover p {
   animation: fadeInUp 1s ease-out 0.9s both;
 }
 
+#projects .about-containers {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2.5rem;
+  align-items: stretch;
+  margin-top: 2.5rem;
+}
+
 .color-container {
   border-color: rgba(0, 212, 255, 0.3);
   background: rgba(0, 0, 0, 0.8);
   backdrop-filter: blur(10px);
   transition: all 0.3s ease;
   border: 2px solid rgba(0, 212, 255, 0.3);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.color-container .article-container {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+}
+
+.project-description {
+  flex: 1;
+}
+
+.color-container .btn-container {
+  margin-top: auto;
 }
 
 .color-container:hover {
@@ -734,7 +797,7 @@ article:hover p {
 /* FOOTER SECTION */
 
 footer {
-  height: 26vh;
+  height: 10vh;
   margin: 0 1rem;
   background: rgba(0, 0, 0, 0.9);
   backdrop-filter: blur(10px);
@@ -751,6 +814,7 @@ footer p {
   text-align: center;
   color: #b8b8b8;
   transition: all 0.3s ease;
+  padding: 1.5rem;
 }
 
 footer:hover p {

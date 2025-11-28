@@ -42,6 +42,9 @@
     height: 275px;
     margin: 0 auto 2rem;
   }
+  #projects .about-containers {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  }
   .about-containers {
     margin-top: 0;
   }
