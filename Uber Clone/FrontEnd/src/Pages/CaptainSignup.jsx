@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { CaptainDataContext } from '../Context/CaptainContext'
+import { CaptainDataContext } from '../context/CapatainContext'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
@@ -34,25 +34,18 @@ const CaptainSignup = () => {
       vehicle: {
         color: vehicleColor,
         plate: vehiclePlate,
-        capacity: parseInt(vehicleCapacity, 10),
+        capacity: vehicleCapacity,
         vehicleType: vehicleType
       }
     }
 
-    try {
-      const baseURL = import.meta.env.VITE_BASE_URL || 'http://localhost:4000'
-      const response = await axios.post(`${baseURL}/captains/register`, captainData)
+    const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/captains/register`, captainData)
 
-      if (response.status === 201) {
-        const data = response.data
-        setCaptain(data.captain)
-        localStorage.setItem('token', data.token)
-        navigate('/captain-home')
-      }
-    } catch (err) {
-      console.error('Captain signup failed:', err?.response?.data || err.message)
-      alert(err?.response?.data?.message || err?.response?.data?.errors?.[0]?.msg || 'Signup failed. Please check your inputs.')
-      return
+    if (response.status === 201) {
+      const data = response.data
+      setCaptain(data.captain)
+      localStorage.setItem('token', data.token)
+      navigate('/captain-home')
     }
 
     setEmail('')
@@ -167,7 +160,7 @@ const CaptainSignup = () => {
               <option value="" disabled>Select Vehicle Type</option>
               <option value="car">Car</option>
               <option value="auto">Auto</option>
-              <option value="motorcycle">Motorcycle</option>
+              <option value="moto">Moto</option>
             </select>
           </div>
 
@@ -179,7 +172,7 @@ const CaptainSignup = () => {
         <p className='text-center'>Already have a account? <Link to='/captain-login' className='text-blue-600'>Login here</Link></p>
       </div>
       <div>
-        <p className='text-[10px] leading-tight'>This site is protected by reCAPTCHA and the <span className='underline'>Google Privacy
+        <p className='text-[10px] mt-6 leading-tight'>This site is protected by reCAPTCHA and the <span className='underline'>Google Privacy
           Policy</span> and <span className='underline'>Terms of Service apply</span>.</p>
       </div>
     </div>
