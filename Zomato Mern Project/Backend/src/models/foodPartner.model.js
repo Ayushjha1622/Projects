@@ -1,7 +1,19 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose")
 
 const foodPartnerSchema = new mongoose.Schema({
     name: {
+        type: String,
+        required: true
+    },
+    contactName: {
+        type: String,
+        required: true
+    },
+    phone: {
+        type: String,
+        required: true
+    },
+    address: {
         type: String,
         required: true
     },
