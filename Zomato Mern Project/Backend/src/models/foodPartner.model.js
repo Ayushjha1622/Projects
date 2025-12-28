@@ -1,4 +1,4 @@
-const mongoose = require("mongoose")
+const mongoose = require('mongoose');
 
 const foodPartnerSchema = new mongoose.Schema({
     name: {
@@ -18,17 +18,16 @@ const foodPartnerSchema = new mongoose.Schema({
         required: true
     },
     email: {
-        type: String,   
+        type: String,
         required: true,
         unique: true
     },
     password: {
         type: String,
         required: true
-    },
-
+    }
 })
 
-const foodPartnerModel = mongoose.model('FoodPartner', foodPartnerSchema);
+const foodPartnerModel = mongoose.model("foodpartner", foodPartnerSchema);
 
 module.exports = foodPartnerModel;

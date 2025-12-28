@@ -1,0 +1,50 @@
+### CipherStudio API - File Endpoints
+@baseUrl = http://localhost:3001
+@token = your_jwt_token_here
+@projectId = project_id_here
+@fileId = file_id_here
+
+### Create New File (Protected)
+POST {{baseUrl}}/api/files
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "projectId": "{{projectId}}",
+  "name": "App.js",
+  "path": "src/App.js",
+  "content": "import React from 'react';\n\nfunction App() {\n  return (\n    <div className=\"App\">\n      <h1>Hello World</h1>\n    </div>\n  );\n}\n\nexport default App;",
+  "language": "javascript"
+}
+
+### Get All Files for a Project (Protected)
+GET {{baseUrl}}/api/files/project/{{projectId}}
+Authorization: Bearer {{token}}
+
+### Get Single File (Protected)
+GET {{baseUrl}}/api/files/{{fileId}}
+Authorization: Bearer {{token}}
+
+### Update File (Protected)
+PUT {{baseUrl}}/api/files/{{fileId}}
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "name": "App.jsx",
+  "content": "import React from 'react';\n\nfunction App() {\n  return (\n    <div className=\"App\">\n      <h1>Hello Updated World</h1>\n    </div>\n  );\n}\n\nexport default App;",
+  "language": "javascript"
+}
+
+### Move File (Protected)
+PUT {{baseUrl}}/api/files/{{fileId}}/move
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "newPath": "src/components/App.jsx"
+}
+
+### Delete File (Protected)
+DELETE {{baseUrl}}/api/files/{{fileId}}
+Authorization: Bearer {{token}}

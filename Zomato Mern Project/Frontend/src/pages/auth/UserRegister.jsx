@@ -1,11 +1,13 @@
 import React from 'react';
-import { Link, Navigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import '../../styles/auth-shared.css';
 import axios from 'axios';
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const UserRegister = () => {
-    const Navigate = useNavigate();
+
+    const navigate = useNavigate();
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -15,17 +17,18 @@ const UserRegister = () => {
         const password = e.target.password.value;
 
 
-      const response = await  axios.post("http://localhost:3000/api/auth/user/register",{
-            fullName:firstName + " " + lastName,
+        const response = await axios.post("http://localhost:3000/api/auth/user/register", {
+            fullName: firstName + " " + lastName,
             email,
             password
-        },{
+        },
+        {
             withCredentials: true
         })
 
         console.log(response.data);
-        Navigate("/")
-        
+
+        navigate("/")
 
     };
 
