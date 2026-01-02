@@ -18,23 +18,29 @@ const FoodPartnerRegister = () => {
     const password = e.target.password.value;
     const address = e.target.address.value;
 
-    axios.post("http://localhost:3000/api/auth/food-partner/register", {
-      name:businessName,
-      contactName,
-      phone,
-      email,
-      password,
-      address
-    }, { withCredentials: true })
-      .then(response => {
-        console.log(response.data);
-        navigate("/create-food"); // Redirect to create food page after successful registration
-      })
-      .catch(error => {
-        console.error("There was an error registering!", error);
-      });
-  };
+    axios.post(
+  "http://localhost:3000/api/auth/food-partner/register",
+  {
+    name: businessName.trim(),
+    contactName: contactName.trim(),
+    phone: phone.trim(),
+    email: email.trim(),
+    password: password.trim(),
+    address: address.trim()
+  },
+  { withCredentials: true }
+)
+.then(response => {
+  console.log(response.data);
 
+  // 🔥 IMPORTANT FIX
+  navigate(`/food-partner/${response.data.foodPartner._id}`);
+})
+.catch(error => {
+  console.error("There was an error registering!", error.response?.data || error.message);
+});
+
+  };
   return (
     <div className="auth-page-wrapper">
       <div className="auth-card" role="region" aria-labelledby="partner-register-title">

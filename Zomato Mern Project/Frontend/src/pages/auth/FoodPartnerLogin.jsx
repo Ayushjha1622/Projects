@@ -7,22 +7,28 @@ const FoodPartnerLogin = () => {
 
   const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+ const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    const email = e.target.email.value;
-    const password = e.target.password.value;
+  const email = e.target.email.value.trim();
+  const password = e.target.password.value.trim();
 
-    const response = await axios.post("http://localhost:3000/api/auth/food-partner/login", {
-      email,
-      password
-    }, { withCredentials: true });
+  try {
+    const response = await axios.post(
+      "http://localhost:3000/api/auth/food-partner/login",
+      { email, password },
+      { withCredentials: true }
+    );
 
     console.log(response.data);
 
-    navigate("/create-food"); // Redirect to create food page after login
+    // 🔥 IMPORTANT FIX
+    navigate(`/food-partner/${response.data.foodPartner._id}`);
 
-  };
+  } catch (err) {
+    console.error("Login failed:", err.response?.data || err.message);
+  }
+};
 
   return (
     <div className="auth-page-wrapper">

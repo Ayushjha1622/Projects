@@ -93,16 +93,20 @@
 .profile-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px;
 }
 
-.profile-grid-item { 
-    border: none;
-    aspect-ratio: 3 / 4; }
+
+.profile-grid-item {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background: #000;
+}
 
 .profile-grid-video {
-  display: grid;
-  place-items: center;
   height: 100%;
+  width: 100%;
   background: var(--color-surface);
   color: var(--color-text-secondary);
   font-size: 1.5rem;
