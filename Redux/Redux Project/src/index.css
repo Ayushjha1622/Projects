@@ -1,12 +1,17 @@
 @import "tailwindcss";
 
 
-*{
-
-  box-sizing: border-box;
+#bottom{
+  background: linear-gradient(transparent,black);
 }
 
-html, body{
-  height: 100%;
-  width: 100%;
+*{
+  font-family: 'helvetica neue'
+}
+
+:root{
+  --c1: rgb(12, 43, 78);
+  --c2: rgb(26, 61, 100);
+  --c3: rgb(29, 84, 100);
+  --c4: rgb(244, 244, 244);
 }

@@ -1,0 +1,156 @@
+### Helpdesk API Tests
+### Use REST Client extension in VS Code to run these requests
+
+@baseUrl = http://localhost:3000/api
+@token = 
+
+###############################################
+# AUTHENTICATION (for getting token)
+###############################################
+
+### Register User
+POST {{baseUrl}}/auth/register
+Content-Type: application/json
+
+{
+  "email": "user@example.com",
+  "password": "user123",
+  "name": "John Doe",
+  "role": "user"
+}
+
+### Register Agent
+POST {{baseUrl}}/auth/register
+Content-Type: application/json
+
+{
+  "email": "agent@helpdesk.com",
+  "password": "agent123",
+  "name": "Agent Smith",
+  "role": "agent"
+}
+
+### Login
+# @name login
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "user@example.com",
+  "password": "user123"
+}
+
+###############################################
+# TICKETS
+###############################################
+
+### POST /api/tickets - Create Ticket
+POST {{baseUrl}}/tickets
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OGUwZjY3ZTNkY2FmZDQ2NDhmOTcyNGQiLCJyb2xlIjoidXNlciIsImlhdCI6MTc1OTU3MzYzMSwiZXhwIjoxNzYwMTc4NDMxfQ.CpodE_vBuBA3szVSv6XraFxbhpUcOuMbkoaY7B_x-uU
+Content-Type: application/json
+
+{
+  "title": "Cannot login to account",
+  "description": "I am unable to login to my account. Getting 'Invalid credentials' error.",
+  "priority": "high"
+}
+
+### POST /api/tickets - Create Another Ticket
+POST {{baseUrl}}/tickets
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "title": "Email notifications not working",
+  "description": "I am not receiving email notifications for new messages.",
+  "priority": "medium"
+}
+
+### GET /api/tickets - Get All Tickets with Pagination
+GET {{baseUrl}}/tickets?limit=10&offset=0
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OGUwZjY3ZTNkY2FmZDQ2NDhmOTcyNGQiLCJyb2xlIjoidXNlciIsImlhdCI6MTc1OTU3MzYzMSwiZXhwIjoxNzYwMTc4NDMxfQ.CpodE_vBuBA3szVSv6XraFxbhpUcOuMbkoaY7B_x-uU
+
+### GET /api/tickets - Filter by Status
+GET {{baseUrl}}/tickets?status=open&limit=10&offset=0
+Authorization: Bearer {{token}}
+
+### GET /api/tickets - Filter by Priority
+GET {{baseUrl}}/tickets?priority=high&limit=10&offset=0
+Authorization: Bearer {{token}}
+
+### GET /api/tickets - Search Tickets
+GET {{baseUrl}}/tickets?search=login&limit=10&offset=0
+Authorization: Bearer {{token}}
+
+### GET /api/tickets - Filter SLA Breached
+GET {{baseUrl}}/tickets?slaBreached=true&limit=10&offset=0
+Authorization: Bearer {{token}}
+
+### GET /api/tickets/:id - Get Ticket by ID
+# Replace TICKET_ID with actual ticket ID from create response
+GET {{baseUrl}}/tickets/TICKET_ID
+Authorization: Bearer {{token}}
+
+### PATCH /api/tickets/:id - Update Ticket Status
+# Replace TICKET_ID with actual ticket ID
+PATCH {{baseUrl}}/tickets/TICKET_ID
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "status": "in_progress",
+  "version": 0
+}
+
+### PATCH /api/tickets/:id - Update Ticket Priority
+PATCH {{baseUrl}}/tickets/TICKET_ID
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "priority": "critical",
+  "version": 1
+}
+
+### PATCH /api/tickets/:id - Assign Ticket
+# Replace AGENT_ID with actual agent user ID
+PATCH {{baseUrl}}/tickets/TICKET_ID
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "assignedTo": "AGENT_ID",
+  "version": 2
+}
+
+### POST /api/tickets/:id/comments - Add Comment
+# Replace TICKET_ID with actual ticket ID
+POST {{baseUrl}}/tickets/TICKET_ID/comments
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "content": "I tried resetting my password but still cannot login. Please help!"
+}
+
+### POST /api/tickets/:id/comments - Add Internal Comment (Agent/Admin only)
+POST {{baseUrl}}/tickets/TICKET_ID/comments
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "content": "Internal note: Check database logs for authentication failures.",
+  "isInternal": true
+}
+
+###############################################
+# NOTES
+###############################################
+
+# Instructions:
+# 1. Start the server: pnpm dev
+# 2. Register and login to get a token
+# 3. Copy the token from login response and paste it in @token variable at the top
+# 4. Replace TICKET_ID with actual ticket IDs from create responses
+# 5. Replace AGENT_ID with actual agent user ID
+# 6. Use VS Code REST Client extension to run these requests

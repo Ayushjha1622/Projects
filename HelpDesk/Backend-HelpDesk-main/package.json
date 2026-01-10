@@ -1,0 +1,40 @@
+{
+  "name": "helpdesk-backend",
+  "version": "1.0.0",
+  "description": "Helpdesk ticketing system with SLA tracking and role-based access",
+  "main": "src/server.js",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon src/server.js",
+    "start": "node src/server.js",
+    "seed": "node src/scripts/seed.js",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "lint": "eslint src/**/*.js",
+    "lint:fix": "eslint src/**/*.js --fix"
+  },
+  "keywords": [
+    "helpdesk",
+    "ticketing",
+    "sla",
+    "support"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.18.2",
+    "express-rate-limit": "^7.1.5",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.1.1",
+    "rate-limit-mongo": "^2.3.2"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.17.0",
+    "eslint": "^9.17.0",
+    "jest": "^30.2.0",
+    "nodemon": "^3.1.9",
+    "supertest": "^7.1.4"
+  }
+}

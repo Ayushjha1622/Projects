@@ -1,17 +1,22 @@
-// import  {fetchPhotos, fetchVideos} from './api/mediaApi';
+import { Route, Routes } from "react-router-dom"
+import HomePage from "./pages/HomePage"
+import CollectionPage from "./pages/CollectionPage"
+import Navbar from "./components/Navbar"
+import { ToastContainer} from "react-toastify"
 
-import ResultGrid from "./components/ResultGrid"
-import SearchBar from "./components/SearchBar"
-import Tabs from "./components/Tabs"
 
 
 const App = () => {
 
   return (
-    <div className="h-screen w-full bg-gray-950 text-white">
-      <SearchBar/>
-      <Tabs/>
-      <ResultGrid/>
+    <div className="min-h-screen w-full bg-gray-950 text-white">
+      <Navbar/>
+      <Routes>
+        <Route path="/" element={<HomePage/>} />
+        <Route path="/collection" element={<CollectionPage/>} />
+      </Routes>
+      <ToastContainer/>
+      
       
     </div>
 

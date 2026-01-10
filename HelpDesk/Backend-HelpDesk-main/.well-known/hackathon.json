@@ -1,0 +1,39 @@
+{
+  "name": "Helpdesk Ticketing System",
+  "description": "A comprehensive helpdesk ticketing system with SLA tracking, role-based access control, and real-time updates",
+  "version": "1.0.0",
+  "author": "Ansh Malviya",
+  "endpoints": {
+    "health": "/api/health",
+    "meta": "/api/_meta",
+    "auth": {
+      "register": "/api/auth/register",
+      "login": "/api/auth/login"
+    },
+    "tickets": {
+      "list": "/api/tickets",
+      "create": "/api/tickets",
+      "get": "/api/tickets/:id",
+      "update": "/api/tickets/:id",
+      "addComment": "/api/tickets/:id/comments"
+    }
+  },
+  "features": [
+    "Role-based access control (Admin, Agent, User)",
+    "SLA tracking with automatic breach detection",
+    "Ticket priority management (Critical, High, Medium, Low)",
+    "Comment system with internal notes",
+    "Timeline tracking for all ticket events",
+    "Optimistic locking for concurrent updates",
+    "Pagination support",
+    "Advanced filtering and search",
+    "Rate limiting (60 req/min/user)",
+    "Idempotency key support"
+  ],
+  "tech_stack": {
+    "runtime": "Node.js",
+    "framework": "Express.js",
+    "database": "MongoDB",
+    "authentication": "JWT"
+  }
+}
